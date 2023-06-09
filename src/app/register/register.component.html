@@ -1,0 +1,21 @@
+<div class="main-div">
+    <form [formGroup]="checkoutForm" class="register-form" (ngSubmit)="onSubmit()">
+        <div>
+            <h3>Signup form</h3>
+        </div>
+        <input  formControlName="email" class="input-email" type="email" label="Email" placeholder="Enter your email"/>
+        <input  formControlName="password" class="input-password" label="Password" type="password" placeholder="Enter your password"/>
+        <input  formControlName="confirmPassword" class="input-password" label="Confirm Password" type="password" placeholder="Enter password again"/>
+
+        <div class="error-message"  *ngIf="errorMessage">
+            {{errorMessage}}
+        </div>
+        
+        <button class="register-submit" type="submit">Submit</button>
+    </form>
+
+    <div class="login-link">
+        <a routerLink="/login">Already have an account? Login</a>
+    </div>
+
+</div>
