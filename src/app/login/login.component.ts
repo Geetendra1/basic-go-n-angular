@@ -34,7 +34,6 @@ export class LoginComponent {
     }
     this.authService.loginUser(user).subscribe(
     response => {
-      console.log('response', response);
       this.cookieService.set('go-token',  response.token ? response.token : '');
       this.router.navigate(['/']);
       this.checkoutForm.reset();
