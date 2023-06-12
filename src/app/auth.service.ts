@@ -16,25 +16,16 @@ export class AuthService {
     private router: Router,
     private cookieService: CookieService
     ) { }
-
     
     httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    
-
-    /** Log a HeroService message with the MessageService */
-    private log(message: string) {
-      console.log('message',message);
-    } 
-    
-
+  
     setToken(token: string): void {
       this.cookieService.set('go-token',  token ? token : '');
     }
   
     getToken(): string | null {
-      console.log('this.cookieService',this.cookieService.get('go-token'));
       return  this.cookieService.get('go-token')
     }
   
@@ -45,7 +36,6 @@ export class AuthService {
       } else {
           return false
       }   
-    
     }
   
     logout() {
@@ -53,11 +43,8 @@ export class AuthService {
       this.router.navigate(['login']);
     }
 
-    registerUser(user: User) : Observable<User> {
-      console.log('register service hits', user);
-      
+    registerUser(user: User) : Observable<User> {      
       return this.http.post<User>('http://localhost:8000/signup', user, this.httpOptions).pipe(
-        tap((newUser: User) => this.log(`added hero w/ id=${newUser}`)),
         catchError(error => {
           throw error
         })
@@ -65,9 +52,7 @@ export class AuthService {
     }
 
     loginUser(user:User) : Observable<User> {
-      console.log('login service hits', user);
       return this.http.post<User>('http://localhost:8000/signin', user, this.httpOptions).pipe(
-        tap((user) => this.log(`added hero w/ id=${user.email}`)),
         catchError(error => {
           throw error
         })
